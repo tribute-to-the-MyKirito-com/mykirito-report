@@ -130,7 +130,6 @@ function renderData(report) {
     defData[14].querySelector("td").innerText = report.b.lck;
 
     // 戰報
-    reportInfoInit();
     let date = new Date(report.timestamp);
     let m = date.getMonth() + 1;
     let d = date.getDate();
