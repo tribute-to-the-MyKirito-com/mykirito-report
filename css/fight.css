@@ -1,13 +1,17 @@
-  /* fight type */
-  div.fight.skill {
+/* fight type */
+div.fight.skill {
+  color: #3f51b5;
+  font-weight: bold;
+}
 
-  }
-  div.fight.critical {
-    
-  }
-  div.fight.special {
-    
-  }
-  div.fight.strong {
-    
-  }
+div.fight.critical {
+  color: #ff0000;
+}
+
+div.fight.special {
+  color: #3a67bb;
+}
+
+div.fight.strong {
+  color: #ff7700;
+}
