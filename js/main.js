@@ -12,11 +12,6 @@ window.addEventListener("load", () => {
 
 // hash change
 window.addEventListener("hashchange", () => {
-    // 初始化戰報內容
-    document.querySelector("div#reportInfo").innerHTML = `
-        <div id="reportInfoHeader"></div>
-    `;
-
     fetchData();
 });
 
@@ -28,15 +23,16 @@ document.querySelector("a#readFileButton").addEventListener("click", () => {
 // 點擊 隱藏的 input （由讀取戰報檔按鈕觸發）
 document.querySelector("div#hidden input").addEventListener("change", (e) => {
     let file = e.target.files[0];
+    let id = e.target.files[0].name;
 
     const reader = new FileReader();
     reader.addEventListener('load', (event) => {
-        // 初始化戰報內容
-        document.querySelector("div#reportInfo").innerHTML = `
-            <div id="reportInfoHeader"></div>
-        `;
         const result = event.target.result;
         let report = JSON.parse(result);
+
+        _reportId = id;
+        _reportData = JSON.stringify(report);
+
         renderData(report);
     });
 
@@ -44,20 +40,38 @@ document.querySelector("div#hidden input").addEventListener("change", (e) => {
 });
 
 // 點擊 讀取戰報連結
-document.querySelector("a#readLinkButton").addEventListener("click", ()=>{
+document.querySelector("a#readLinkButton").addEventListener("click", () => {
+    let url = prompt("請輸入戰報網址（註：只有第三輪適用）\n（再註：不知道戰報什麼時候會被刪除，屆時這個功能就廢了）", "https://mykirito.com/report/5ec8bb781d7de1000a18ab2a");
 
+    // 必須按確定
+    if (url != null) {
+        let id = url.match(/([0-9a-f]{24})/);
+        if (id != null) {
+            id = id[1];
+            fetchData(id);
+        } else {
+            alert("網址格式錯誤");
+        }
+    }
 });
 
 // 點擊 下載此戰報
-document.querySelector("a#downloadButton").addEventListener("click", ()=>{
+document.querySelector("a#downloadButton").addEventListener("click", () => {
+    console.log(_reportData);
     download(_reportId, _reportData);
 });
 
-// 抓取資料（GitHub）
-async function fetchData() {
-    let id = location.hash.substr(1);
+// 抓取資料
+async function fetchData(reportId = "") {
+    let fetchUrl = "";
+    if (reportId == "") {
+        reportId = location.hash.substr(1);
+        fetchUrl = `reports/${reportId}.json`;
+    } else {
+        fetchUrl = `https://storage.googleapis.com/kirito-1585904519813.appspot.com/reports2/${reportId}.json`;
+    }
 
-    let report = await fetch(`reports/${id}.json`).then(
+    let report = await fetch(fetchUrl).then(
         r => r.json()
     ).then(
         j => j
@@ -68,7 +82,7 @@ async function fetchData() {
     if (report == "error") {
         alert("錯誤：找不到戰報");
     } else {
-        _reportId = id;
+        _reportId = reportId;
         _reportData = JSON.stringify(report);
         renderData(report);
     }
@@ -116,6 +130,7 @@ function renderData(report) {
     defData[14].querySelector("td").innerText = report.b.lck;
 
     // 戰報
+    reportInfoInit();
     let date = new Date(report.timestamp);
     let m = date.getMonth() + 1;
     let d = date.getDate();
@@ -147,12 +162,18 @@ function download(filename, text) {
     let element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
     element.setAttribute('download', `${filename}.json`);
-  
+
     element.style.display = 'none';
     document.body.appendChild(element);
-  
+
     element.click();
-  
+
     document.body.removeChild(element);
-  }
-  
+}
+
+// 初始化戰報內容
+function reportInfoInit() {
+    document.querySelector("div#reportInfo").innerHTML = `
+        <div id="reportInfoHeader"></div>
+    `;
+}
