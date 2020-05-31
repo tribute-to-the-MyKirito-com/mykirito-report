@@ -1,6 +1,6 @@
 window.addEventListener("load", () => {
     if (location.hash == "") {
-        location.hash = "#5ec771d0a35ab8000a07ceda";
+        location.hash = "#5ec8bb781d7de1000a18ab2a";
     } else {
         fetchData();
     }
