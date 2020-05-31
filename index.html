@@ -5,139 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>我的桐人</title>
-  <style>
-    html {
-      line-height: 1.15;
-    }
-
-    body {
-      margin: 0;
-    }
-
-    div#root {
-      font-family: Noto Sans TC, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, sans-serif;
-      line-height: 1.4;
-      /* custom */
-      padding-top: 66px;
-    }
-
-    nav#navbar {
-      -webkit-box-align: center;
-      align-items: center;
-      box-sizing: border-box;
-      box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;
-      display: flex;
-      flex-wrap: wrap;
-      margin-bottom: 18px;
-      width: 100%;
-      background: rgb(0, 181, 181);
-      padding: 0px 15%;
-      /* custom */
-      position: fixed;
-      top: 0;
-    }
-
-    a.navItem {
-      -webkit-box-align: center;
-      align-items: center;
-      color: white;
-      display: flex;
-      height: 48px;
-      padding: 0px 12px;
-      transition: all 0.16s ease 0s;
-      text-decoration: none;
-      background-color: #0000;
-      cursor: pointer;
-    }
-
-    div#container {
-      max-width: 760px;
-      min-width: 400px;
-      width: 92%;
-      margin: 12px auto;
-    }
-
-    div#playerData,
-    div#report {
-      margin-bottom: 18px;
-      overflow-x: auto;
-      border-width: 1px;
-      border-style: solid;
-      border-color: rgb(221, 221, 221);
-      border-image: initial;
-      padding: 12px;
-    }
-
-    div#playerDataTableContainer {
-      display: flex;
-    }
-
-    table.playerDataTable {
-      width: 50%;
-      border-spacing: 0px;
-      border-width: 1px;
-      border-style: solid;
-      border-color: rgb(221, 221, 221);
-      border-image: initial;
-    }
-
-    table.playerDataTable th {
-      width: 5rem;
-      border-bottom: 1px solid rgb(221, 221, 221);
-      background: rgb(240, 240, 240);
-      border-right: 1px solid rgb(221, 221, 221);
-      padding: 4px 8px;
-    }
-
-    table.playerDataTable td {
-      text-align: left;
-      border-right: 1px solid rgb(221, 221, 221);
-      padding: 4px 8px;
-      border-bottom: 1px solid rgb(221, 221, 221);
-    }
-
-    table.playerDataTable td:last-child {
-      border-right-width: 0px;
-    }
-
-    div.playerRoleImageContainer {
-      text-align: center;
-      margin: 0px auto;
-    }
-
-    div.playerRoleImageContainer picture,
-    div.playerRoleImageContainer img {
-      vertical-align: middle;
-      height: 160px;
-      width: 160px;
-    }
-
-    div#reportInfo {
-      margin-bottom: 12px;
-      padding: 12px 6px;
-    }
-
-    div#reportInfoHeader {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 12px;
-    }
-
-
-    /* fight type */
-    div.fight.skill {
-
-    }
-    div.fight.critical {
-      
-    }
-    div.fight.special {
-      
-    }
-    div.fight.strong {
-      
-    }
-  </style>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/fight.css">
 </head>
 
 <body>
@@ -300,12 +169,15 @@
             5/24/2020, 12:31:15 PM 的 友好切磋
           </div>
           <div class="fight">
-            div.lineNumber
+            <div class="lineNumber">
+
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</body>
 
+  <script src="js/main.js"></script>
+</body>
 </html>
