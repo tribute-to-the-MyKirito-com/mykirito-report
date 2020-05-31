@@ -90,6 +90,7 @@ async function fetchData(reportId = "") {
 
 // 渲染資料
 function renderData(report) {
+    reportInfoInit();
     let atkData = document.querySelectorAll("table.playerDataTable:nth-child(1) tr");
     let defData = document.querySelectorAll("table.playerDataTable:nth-child(2) tr");
     let infoHeader = document.querySelector("div#reportInfoHeader");
