@@ -1,3 +1,7 @@
+let _reportId = "";
+let _reportData = "";
+
+// 網頁讀取完畢
 window.addEventListener("load", () => {
     if (location.hash == "") {
         location.hash = "#5ec8bb781d7de1000a18ab2a";
@@ -6,6 +10,7 @@ window.addEventListener("load", () => {
     }
 });
 
+// hash change
 window.addEventListener("hashchange", () => {
     // 初始化戰報內容
     document.querySelector("div#reportInfo").innerHTML = `
@@ -15,10 +20,12 @@ window.addEventListener("hashchange", () => {
     fetchData();
 });
 
+// 點擊 讀取戰報檔
 document.querySelector("a#readFileButton").addEventListener("click", () => {
     document.querySelector("div#hidden input").click();
 });
 
+// 點擊 隱藏的 input （由讀取戰報檔按鈕觸發）
 document.querySelector("div#hidden input").addEventListener("change", (e) => {
     let file = e.target.files[0];
 
@@ -36,6 +43,17 @@ document.querySelector("div#hidden input").addEventListener("change", (e) => {
     reader.readAsText(file, "UTF-8");
 });
 
+// 點擊 讀取戰報連結
+document.querySelector("a#readLinkButton").addEventListener("click", ()=>{
+
+});
+
+// 點擊 下載此戰報
+document.querySelector("a#downloadButton").addEventListener("click", ()=>{
+    download(_reportId, _reportData);
+});
+
+// 抓取資料（GitHub）
 async function fetchData() {
     let id = location.hash.substr(1);
 
@@ -50,10 +68,13 @@ async function fetchData() {
     if (report == "error") {
         alert("錯誤：找不到戰報");
     } else {
-        renderData(report)
+        _reportId = id;
+        _reportData = JSON.stringify(report);
+        renderData(report);
     }
 }
 
+// 渲染資料
 function renderData(report) {
     let atkData = document.querySelectorAll("table.playerDataTable:nth-child(1) tr");
     let defData = document.querySelectorAll("table.playerDataTable:nth-child(2) tr");
@@ -121,3 +142,17 @@ function renderData(report) {
 
     infoContent.innerHTML += temp;
 }
+
+function download(filename, text) {
+    let element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', `${filename}.json`);
+  
+    element.style.display = 'none';
+    document.body.appendChild(element);
+  
+    element.click();
+  
+    document.body.removeChild(element);
+  }
+  
