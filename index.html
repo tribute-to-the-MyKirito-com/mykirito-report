@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的桐人</title>
+  <style>
+    html {
+      line-height: 1.15;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    div#root {
+      font-family: Noto Sans TC, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+      line-height: 1.4;
+      /* custom */
+      padding-top: 66px;
+    }
+
+    nav#navbar {
+      -webkit-box-align: center;
+      align-items: center;
+      box-sizing: border-box;
+      box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px;
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+      width: 100%;
+      background: rgb(0, 181, 181);
+      padding: 0px 15%;
+      /* custom */
+      position: fixed;
+      top: 0;
+    }
+
+    a.navItem {
+      -webkit-box-align: center;
+      align-items: center;
+      color: white;
+      display: flex;
+      height: 48px;
+      padding: 0px 12px;
+      transition: all 0.16s ease 0s;
+      text-decoration: none;
+      background-color: #0000;
+      cursor: pointer;
+    }
+
+    div#container {
+      max-width: 760px;
+      min-width: 400px;
+      width: 92%;
+      margin: 12px auto;
+    }
+
+    div#playerData,
+    div#report {
+      margin-bottom: 18px;
+      overflow-x: auto;
+      border-width: 1px;
+      border-style: solid;
+      border-color: rgb(221, 221, 221);
+      border-image: initial;
+      padding: 12px;
+    }
+
+    div#playerDataTableContainer {
+      display: flex;
+    }
+
+    table.playerDataTable {
+      width: 50%;
+      border-spacing: 0px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: rgb(221, 221, 221);
+      border-image: initial;
+    }
+
+    table.playerDataTable th {
+      width: 5rem;
+      border-bottom: 1px solid rgb(221, 221, 221);
+      background: rgb(240, 240, 240);
+      border-right: 1px solid rgb(221, 221, 221);
+      padding: 4px 8px;
+    }
+
+    table.playerDataTable td {
+      text-align: left;
+      border-right: 1px solid rgb(221, 221, 221);
+      padding: 4px 8px;
+      border-bottom: 1px solid rgb(221, 221, 221);
+    }
+
+    table.playerDataTable td:last-child {
+      border-right-width: 0px;
+    }
+
+    div.playerRoleImageContainer {
+      text-align: center;
+      margin: 0px auto;
+    }
+
+    div.playerRoleImageContainer picture,
+    div.playerRoleImageContainer img {
+      vertical-align: middle;
+      height: 160px;
+      width: 160px;
+    }
+
+    div#reportInfo {
+      margin-bottom: 12px;
+      padding: 12px 6px;
+    }
+
+    div#reportInfoHeader {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+
+    /* fight type */
+    div.fight.skill {
+
+    }
+    div.fight.critical {
+      
+    }
+    div.fight.special {
+      
+    }
+    div.fight.strong {
+      
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root">
+    <nav id="navbar">
+      <a href="#" class="navItem">我的桐人</a>
+      <a href="#" class="navItem">玩家列表</a>
+      <a href="#" class="navItem">挑戰Boss</a>
+      <a href="#" class="navItem">輸出排行</a>
+      <a href="#" class="navItem">轉生</a>
+      <a href="#" class="navItem">戰報</a>
+    </nav>
+  </div>
+  <div id="container">
+    <div id="content">
+      <p>提示：可直接複製分享此網址</p>
+
+      <div id="playerData">
+        <h3>玩家資料</h3>
+        <div id="playerDataTableContainer">
+          <table class="playerDataTable">
+            <tbody>
+              <tr>
+                <th colspan="2">攻擊者</th>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <div class="playerRoleImageContainer">
+                    <img src="https://storage.googleapis.com/kirito-1585904519813.appspot.com/avatars/aizen2.png">
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th>等級</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>暱稱</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>角色</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>稱號</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>HP</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>攻擊</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>防禦</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>體力</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>敏捷</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>反應速度</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>技巧</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>智力</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>幸運</th>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="playerDataTable">
+            <tbody>
+              <tr>
+                <th colspan="2">防守方</th>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <div class="playerRoleImageContainer">
+                    <img src="https://storage.googleapis.com/kirito-1585904519813.appspot.com/avatars/lisbeth.png">
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th>等級</th>
+                <td>43</td>
+              </tr>
+              <tr>
+                <th>暱稱</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>角色</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>稱號</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>HP</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>攻擊</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>防禦</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>體力</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>敏捷</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>反應速度</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>技巧</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>智力</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>幸運</th>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="report">
+        <h3>戰鬥報告</h3>
+        <div id="reportInfo">
+          <div id="reportInfoHeader">
+            5/24/2020, 12:31:15 PM 的 友好切磋
+          </div>
+          <div class="fight">
+            div.lineNumber
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
